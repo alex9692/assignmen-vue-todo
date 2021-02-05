@@ -112,10 +112,9 @@
                     v-text="item.title"
                   ></v-list-item-subtitle>
 
-                  <v-list-item-subtitle
-                    class="mt-6"
-                    v-text="item.description"
-                  ></v-list-item-subtitle>
+                  <v-list-item-subtitle class="mt-6">{{
+                    item.description | formatDescription
+                  }}</v-list-item-subtitle>
                 </v-list-item-content>
 
                 <v-list-item-action>
@@ -249,6 +248,13 @@ export default {
     momentFormat(val) {
       // return moment(val).format("MMMM Do YYYY, h:mm:ss a");
       return moment(val).format("YYYY-MM-DD");
+    },
+    formatDescription(val) {
+      let text = val;
+      if (val.length > 60) {
+        text = val.slice(0, 60) + "....";
+      }
+      return text;
     },
   },
   watch: {

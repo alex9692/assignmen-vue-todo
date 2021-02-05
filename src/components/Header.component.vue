@@ -69,7 +69,8 @@
           ></v-img>
           <v-list-item-subtitle class="ml-3">Todo App</v-list-item-subtitle>
         </v-list-item>
-        <v-list-item link>
+        <v-divider class="mb-3"></v-divider>
+        <v-list-item link v-if="isAuth">
           <v-list-item-content>
             <v-list-item-title class="title" v-if="isAuth">
               {{ name }}
@@ -79,13 +80,13 @@
             }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item v-if="isAuth">
+        <!-- <v-list-item v-if="isAuth">
           <v-list-item-icon>
             <v-icon>mdi-account</v-icon>
           </v-list-item-icon>
           <v-list-item-title>Account</v-list-item-title>
-        </v-list-item>
-        <v-list-item v-if="!isAuth" @click="$router.replace('/login')">
+        </v-list-item> -->
+        <v-list-item v-if="!isAuth" link to="/login">
           <v-list-item-icon>
             <v-icon>mdi-login</v-icon>
           </v-list-item-icon>

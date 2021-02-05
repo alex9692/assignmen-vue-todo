@@ -10,21 +10,6 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
-    // beforeEnter: (to, from, next) => {
-    //   store.watch(
-    //     (state) => {
-    //       return state.user.currentUser;
-    //     },
-    //     (currentUser) => {
-    //       console.log("aa");
-    //       if (!currentUser) {
-    //         next("/login");
-    //       } else {
-    //         next('/');
-    //       }
-    //     }
-    //   );
-    // },
   },
   {
     path: "/about",
@@ -39,21 +24,6 @@ const routes = [
     path: "/login",
     name: "Login",
     component: () => import("@/views/Auth.component"),
-
-    // beforeEnter: (to, from, next) => {
-    //   store.watch(
-    //     (state) => {
-    //       return state.user.currentUser;
-    //     },
-    //     (currentUser) => {
-    //       if (currentUser) {
-    //         next("/");
-    //       } else {
-    //         next();
-    //       }
-    //     }
-    //   );
-    // },
   },
 ];
 

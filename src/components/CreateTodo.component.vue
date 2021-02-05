@@ -48,7 +48,13 @@
         <v-radio label="Business" value="business"></v-radio>
       </v-radio-group>
       <div class="d-flex justify-space-between">
-        <v-btn dark class="mr-4 mt-4 green" block @click="submit">
+        <v-btn
+          dark
+          class="mr-4 mt-4 green"
+          block
+          @click="submit"
+          :loading="loading"
+        >
           {{ mode === "crt" ? "Add" : "Update" }}
         </v-btn>
         <!-- <v-btn
@@ -66,7 +72,7 @@
             dark
             top
             right
-            :class="[ bpValue ? 'mr-3': ' mr-6','warning v-btn--example mb-6']"
+            :class="[bpValue ? 'mr-3' : ' mr-6', 'warning v-btn--example mb-6']"
             @click="$emit('close-dialog', false)"
           >
             <v-icon>mdi-close</v-icon>
@@ -94,6 +100,7 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
+      loading: false,
       snackbar: false,
       text: "",
       mode: "crt",
@@ -154,6 +161,7 @@ export default {
         return;
       }
       try {
+        this.loading = true;
         if (this.mode === "crt") {
           await this.createTodoDoc(this.userId, {
             title: this.title,
@@ -177,6 +185,7 @@ export default {
         }
         this.$emit("close-dialog", false);
       } catch (error) {
+        this.loading = false;
         this.snackbar = true;
         this.text = error.message;
       }
@@ -206,7 +215,6 @@ export default {
       } else {
         getTime = hh + dvdr + mm + dvdr + ss;
       }
-      console.log(this.date + ", " + getTime);
       return new Date(this.date + ", " + getTime);
     },
     ...mapGetters({ userId: "user/getId" }),
@@ -220,7 +228,7 @@ export default {
       this.type = this.propType;
       this.time = this.getStartTime(this.propTime);
       this.date = this.getStartDate(this.propTime);
-      this.startDate = this.getStartDate(this.propTime);
+      this.startDate = this.getStartDate();
     }
   },
 };
