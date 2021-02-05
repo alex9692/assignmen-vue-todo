@@ -183,7 +183,7 @@
         </template>
         <template v-if="todoCount && !todos.length">
           <div class="warning--text mt-16 text-h3 d-flex justify-center">
-            Sorry Todo not found!!
+            Sorry.. no todos found :(
           </div>
         </template>
       </v-list-item-group>
@@ -220,6 +220,7 @@ export default {
       { title: "Show fav", val: "fav" },
       { title: "Show only home", val: "home" },
       { title: "show only business", val: "business" },
+      { title: "Show finished", val: "finished" },
       { title: "Show all", val: "all" },
     ],
   }),
@@ -296,6 +297,9 @@ export default {
             (todo) => todo.type === "business"
           );
           break;
+        case "finished":
+          this.todos = [...this.items].filter((todo) => todo.finished);
+          break;
         case "all":
           this.todos = [...this.items];
           break;
@@ -312,9 +316,3 @@ export default {
   background-color: #ffccbc;
 }
 </style>
-
-// move all finished down
-// archive todos to finished page
-// view single todo page
-// update single todo
-// delete single todo

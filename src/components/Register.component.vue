@@ -36,7 +36,13 @@
         @blur="$v.password.$touch()"
       ></v-text-field>
       <div class="d-flex justify-space-between">
-        <v-btn class="mr-4 green" @click="submit" :disabled="$v.$invalid">
+        <v-btn
+          dark
+          class="mr-4 green"
+          @click="submit"
+          :loading="loading"
+          :disabled="$v.$invalid"
+        >
           Register
         </v-btn>
         <v-btn class="mr-4 secondary" @click="$emit('login-event', !isLogin)">
