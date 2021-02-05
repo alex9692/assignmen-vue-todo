@@ -1,5 +1,6 @@
 import Vue from "vue";
-import Vuex, { createLogger } from "vuex";
+import Vuex from "vuex";
+// import Vuex, { createLogger } from "vuex";
 // import VuePersistance from "vuex-persist";
 
 import user from "@/store/modules/user";
@@ -17,7 +18,7 @@ const store = new Vuex.Store({
     user,
     todo,
   },
-  plugins: [createLogger()],
+  // plugins: [createLogger()],
 });
 
 export default store;
