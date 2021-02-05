@@ -44,6 +44,15 @@
         </v-btn>
       </div>
     </v-form>
+    <v-snackbar v-model="snackbar">
+      {{ error }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-card>
 </template>
 
@@ -65,6 +74,9 @@ export default {
     displayName: "",
     email: "",
     password: "",
+    loading: false,
+    error: null,
+    snackbar: false,
   }),
 
   props: {
@@ -107,14 +119,19 @@ export default {
   methods: {
     async submit() {
       try {
+        this.loading = true;
         const { user } = await auth.createUserWithEmailAndPassword(
           this.email,
           this.password
         );
         await createUserProfileDoc(user, { name: this.displayName });
+        this.loading = false;
         this.$emit("login-event", !this.isLogin);
       } catch (error) {
         console.error(error);
+        this.loading = false;
+        this.snackbar = true;
+        this.error = error.message;
       }
     },
   },
