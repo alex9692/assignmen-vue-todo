@@ -37,7 +37,6 @@
       ></v-text-field>
       <div class="d-flex justify-space-between">
         <v-btn
-          dark
           class="mr-4 green"
           @click="submit"
           :loading="loading"

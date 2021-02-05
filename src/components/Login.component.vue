@@ -40,7 +40,6 @@
       <v-btn
         class="mr-4 green"
         block
-        dark
         @click="submit"
         :loading="loading"
         :disabled="$v.$invalid"
